@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
 # for Semi-Manual upgrading your system.
 # NOTE: requires rsync 
@@ -91,6 +91,7 @@ declare -A directories=(
     ["config/waybar/"]="$HOME/.config/waybar/"
     ["config/cava/"]="$HOME/.config/cava/"
     ["config/ags/"]="$HOME/.config/ags/"
+    ["config/quickshell/"]="$HOME/.config/quickshell/"
     ["config/fastfetch/"]="$HOME/.config/fastfetch/"
     ["config/wallust/"]="$HOME/.config/wallust/"
     ["config/wlogout/"]="$HOME/.config/wlogout/"
@@ -102,6 +103,7 @@ declare -A exclusions=(
     ["config/hypr/"]="--exclude=UserConfigs/ --exclude=UserScripts/"
     ["config/waybar/"]="--exclude=config --exclude=style.css"
     ["config/rofi/"]="--exclude=.current_wallpaper"
+    ["config/quickshell/"]="--exclude=shell.qml"
     # Add more exclusions as needed
 )
 
@@ -196,7 +198,8 @@ if version_gt "$latest_version" "$stored_version"; then
         chmod +x "$HOME/.config/hypr/scripts/"* 2>&1 | tee -a "$LOG"
         chmod +x "$HOME/.config/hypr/UserScripts/"* 2>&1 | tee -a "$LOG"
         # Set executable for initial-boot.sh
-        chmod +x "$HOME/.config/hypr/initial-boot.sh" 2>&1 | tee -a "$LOG"		
+        chmod +x "$HOME/.config/hypr/initial-boot.sh" 2>&1 | tee -a "$LOG"
+        
     else
         echo "$MAGENTA Upgrade declined. No files or directories changed" 2>&1 | tee -a "$LOG"
     fi
